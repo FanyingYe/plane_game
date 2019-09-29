@@ -1,0 +1,108 @@
+# ReadMe for COMP 86 HW6 
+## Final Animation
+
+1. The purpose of the program: 
+The program is written to implement the game of UAV airplane moving around on a 
+Map, like a radar screen, to avoid bullets. Besides, the program provides 
+widgets for the user to interact with the map， for example, choose a certain 
+kind of plane from toy and stunt plane to add. Then the start button will be 
+enabled so we start the game. Once it start, bullets will show up,and time 
+elapse will show. User can use up, down, left and right to control that plan to
+avoid being crashed by bullets. If the plane crashes, then game over, and total
+time survive will show.
+
+2. List of files:
+	*Plane.java
+	*ToyPlane.java
+	*StuntPlane.java
+	*AddPlaneButton.java
+	*MyRadio.java
+	*StartButton.java
+	*MyButton.java
+	*ButtonLeft.java
+	*ButtonRight.java
+	*ButtonUp.java
+	*ButtonDown.java
+	*Map.java
+	*Main.java
+	*Bullet.java
+	*Explode.java
+	*GameUtil.java
+	*README
+	
+3. How to compile it:
+	Go to the directory where you have these files and then type:
+	javac *.java
+	
+4. Outline:
+	4.1 Inheritance hierarchy:
+		JComponent
+			Map
+		JButton	
+			AddPlaneButton
+			StartButton
+			MyButton
+				ButtonUp
+				ButtonLeft
+				ButtonRight
+				ButtonDown
+		JPanel
+			MyRadio
+		JFrame
+			Main
+		Plane
+			ToyPlane
+			StuntPlane
+		Thread
+			PaintThread
+		
+
+	4.2 Aggregation hierarchy:
+		JFrame
+			Container
+				JPanel
+					MyRadio
+					AddPlaneButton
+					StartButton
+				JPanel
+					JPanel
+						ButtonUp
+					JPanel
+						ButtonLeft
+						ButtonDown
+						ButtonRight
+				Map
+	4.3 collaboration relationships 
+		ButtonLeft,ButtonRight, ButtonUp and ButtonDown use 
+	Map.doAction in actionPerformed routine.
+	
+		AddPlaneButton use Map.addPlane() and Radio.getType() in 
+	actionPerformed routine.
+	
+		StartButton use Map.startGame() in actionPerformed routine.
+		
+		Map uses Plane.draw(g), Bullet.draw(g), Explode.draw(g) in 
+	paintComponent routine, use PaintThread.start() to start thread in 
+	constructor;		
+		
+	4.4 The information hiding "secrets" of each of your classes
+		Map: 
+			Image 	
+			Plane
+			List<Bullet>
+			Date startTime, endTime,currentTime;
+			double period;
+			Explode explode;
+		
+		Plane: 
+			int x
+			int y
+			int speed
+			boolean isAlive
+		
+		ToyPlane: Image
+		
+		StuntPlane: Image
+		
+
+			
